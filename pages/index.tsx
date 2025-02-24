@@ -1,5 +1,5 @@
-import { useState, useEffect, SetStateAction } from "react";
-import { login, logout, checkAuth } from "../utils/auth";
+import { useState, useEffect } from "react";
+import { login, logout, checkAuth } from "../hooks/auth";
 import { getCookie, setCookie, deleteCookie } from "../utils/cookie";
 
 export default function Home() {
@@ -21,19 +21,19 @@ export default function Home() {
 
   const onInputUserName = (e: { target: { value: any; }; }) => {
     const value = e.target.value;
+    setUsername(value)
     // 如果勾選 Remember Me，儲存帳號密碼到 cookies
     if (rememberMe) {
       setCookie("username", value, 7); // 儲存 7 天
     }
-    setUsername(value)
   }
 
   const onInputPassword = (e: { target: { value: any; }; }) => {
     const value = e.target.value;
+    setPassword(value)
     // 如果勾選 Remember Me，儲存帳號密碼到 cookies
     if (rememberMe) {
       setCookie("password", value, 7); // 儲存 7 天
-      setPassword(value)
     }
   }
 
